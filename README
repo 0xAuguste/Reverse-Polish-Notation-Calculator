@@ -1,0 +1,114 @@
+/**********************************************************
+* Proj 1 Phase: CalcYouLater
+* Auguste Brown
+* Comp 15: Data Structures
+* README
+*********************************************************/
+
+Compile/run:
+     - Compile using
+            make
+     - run executable with
+            ./CalcYouLater
+
+For Testing:
+    ./cylc testRPNCalc.cyl
+    ./CalcYouLater < testRPNCalc.cylc > output.txt
+
+    make testRPNCalc
+    ./testRPNCalc
+
+
+Program Purpose:
+
+Creates a calculator using Reverse Polish Notation. The calculator can be used
+to perform simple mathematical operations, but it can also be used to compare
+values and execute small programs stored in rstrings or files.
+
+
+Acknowledgements: 
+    -Datum.h and fact.cylc were written for me
+
+
+Files: 
+
+Datum.h:
+    Contains class definition for Datum. Implementation was completed for me.
+
+DatumStack.h
+    Contains class definition for DatumStack.
+
+DatumStack.cpp
+    Contains class implementation for DatumStack
+
+testDatumStack.cpp
+    Contains test code for DatumStack member functions
+
+RPNCalc.h
+    Contains class definition for RPNCalc.
+
+RPNCalc.cpp
+    Contains class implemenation for RPNCalc.
+
+testRPNCalc.cpp
+    Contains test code for RPNCalc member functions
+
+testRPNCalc.cyl
+    Contains commands used to test RPNCalc functionality
+
+fact.cylc
+    Contains commands which calculate the factorial of the top of the stack
+
+Makefile
+    Builds the executables for testRPNCalc CalcYouLater
+
+README
+    Contains documentation for CalcYouLater
+
+
+Data Structures:
+Datum
+    Each Datum contains either a bool, int or RString (represented as a string)
+    Datums have member functions which make it easy to access their data.
+
+DatumStack
+    A stack of Datum objects, implemented with std::vector. Contains member
+    functions which can manipulate the top of the stack. By nature, the client
+    of a stack can only access the front (elements can only be added or removed
+    from the front). Other examples of situations which could utilize a stack
+    include the runtime stack and a normal calculator (numbers are added to the
+    stack).
+
+RPNCalc
+    A class which contains a DatumStack and member functions to maniupulate the
+    stack
+
+Algorithms:
+    
+    Exec: For exec, the stack cannot be empty, and the top element must be an
+          rstring. If these conditions are met, the rstring is removed from the
+          stack and turned into an istringstream. This stream is then passed
+          into the run function, and the contents on the rstring are executed.
+    File: Similarly to the exec command, the stack cannot be empty and the top
+          element must be an rstring. If these conditions are met, the file
+          name is read in and the run function is called with the file istream.
+    If:   For this command to work there must be at least 3 elements on the
+          stack, which are 2 rstrings and a boolean (in that order). If these
+          conditions are met, the boolean is checked. If it is true, the "true"
+          condition rstring is executed, and if it is false, the "false"
+          condition rstring is executed.
+
+Testing:
+    To test DatumStack, I wrote testDatumStack which creates two DatumStack
+    objects using each constructor, and tests each public function. 
+    
+    To test parseRString, I wrote functions which passed input streamed from
+    cin and a file input ifstream. NOTE: parseRString is expected to be called
+    after RPNCalc sees an opening '{'.
+
+    To test RPNCalc, I first wrote testRPNCalc, which contains unit test for 
+    the basic functionality of CalcYouLater. I then wrote testRPNCalc.cyl,
+    which contains full testing for boundary conditions of different commands
+    and tests all rstring functionality. The output from these commands was
+    piped into an output file for the spec and my output, and diff was run on
+    these files.

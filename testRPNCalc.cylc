@@ -1,0 +1,72 @@
+3 print
+#t print
+{ 100 5 / } print
+Gus
+drop print
+drop print
+dup print
+drop print
+3 4 swap print
+clear
+3 +
+3 4 +
+print
+#t +
+clear
+3 -
+3 4 -
+print
+#t -
+clear
+3 *
+5 6 *
+print
+#t *
+clear
+3 /
+30 5 /
+print
+#t /
+clear
+3 mod
+12 10 mod
+print
+#t mod
+clear
+3 ==
+10 20 == print
+10 10 == print
+#f #f == print
+#t #f == print
+{ } { 10 20 } == print
+10 #t == print
+10 { Gus } == print
+#t { Gus } == print
+clear
+33 <
+10 11 < print
+10 10 < print
+10 9 < print
+3 #t < print
+clear
+33 >
+10 11 > print
+10 10 > print
+10 9 > print
+3 #t > print
+clear
+33 <=
+10 11 <= print
+10 10 <= print
+10 9 <= print
+3 #t <= print
+clear
+33 >=
+10 11 >= print
+10 10 >= print
+10 9 >= print
+3 #t >= print
+5 exec print
+#t exec print
+{ 4 5 + } exec print
+6 { fact.cylc } file print
